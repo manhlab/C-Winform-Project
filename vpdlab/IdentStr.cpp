@@ -40,18 +40,6 @@ IdentStr::IdentStr(const char* Str) :Stroka(Str)
         pCh[0] = '\0';
         return;
     }
-    for (int i = 1; i < len; i++)
-    {
-        if (!((pCh[i] >= 'a' && pCh[i] <= 'z') || (pCh[i] >= 'A' && pCh[i] <= 'Z') || (pCh[i] >= '0' && pCh[i] <= '9') || (pCh[i] == '_')))
-        {
-            cout << "Bad Stroka pCh[0]=" << pCh[0] << endl;
-            if (pCh) delete[] pCh;
-            len = 0;
-            pCh = new char[len + 1];
-            pCh[0] = '\0';
-            return;
-        }
-    }
     for (int i = 0; i < 67; i++)
     {
         if (!strcmp(pCh, systemw[i]))
@@ -72,6 +60,18 @@ IdentStr::IdentStr(const char* Str) :Stroka(Str)
 IdentStr::~IdentStr()
 {
     cout << "IdentStr::~IdentStr()" << endl;
+}
+int IdentStr::operator [] (const char simbol)
+{
+	for ( int i = 0 ; i< len; i ++)
+	{
+		if(pCh[i] == simbol){
+		cout<< "char& IdentStr::operator [] (char simbol)"<<endl;
+		return i;
+		}
+	}
+	cout<< "value not in string!!!"<<endl;
+	return 0;
 }
 
 IdentStr& IdentStr::operator=(const IdentStr& S)
@@ -160,5 +160,6 @@ char& IdentStr::operator [] (int Index)
         cout << "char& IdentStr::operator [] (int Index)" << endl;
         return pCh[Index];
     }
+	cout<<"Index not valid"<<endl;
     return pCh[0];
 }

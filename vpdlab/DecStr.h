@@ -23,6 +23,9 @@ public:
     friend DecStr operator + (const DecStr&, const char*);
     friend DecStr operator + (const char*, const DecStr&);
     friend bool operator == (const DecStr&, const DecStr&);
+	friend DecStr operator * (const int , const DecStr&);
+    friend DecStr operator * ( const DecStr&,const int);
+	friend DecStr operator * ( const DecStr&,const DecStr&);
     char* fun1(int, int);
 
 

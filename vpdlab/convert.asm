@@ -2,7 +2,7 @@
 .MODEL FLAT, stdcall    ;Use the flat memory model. Use C calling conventions
 .STACK            ;Define a stack segment of 1KB (Not required for this example)
 .DATA             ;Create a near data segment.  Local variables are declared after
-strOutput db 10 dup (0)      ;this directive (Not required for this example)
+strOutput db 10 dup (0)      
 .CODE             ;Indicates the start of a code segment.
 
 fun2 PROC num:DWORD
