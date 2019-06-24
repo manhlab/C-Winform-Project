@@ -1,75 +1,70 @@
-//
-//  main.cpp
-//  VPD
-//
-//  Created by Manh Tran on 12/02/2019.
-//  Copyright © 2019 Manh Tran. All rights reserved.
-//
 
 #include <iostream>
 #include <string.h>
 #include <math.h>
-#include "Stroka.hpp"
-#include "IdentStr.hpp"
-#include "DecStr.hpp"
+#include "Stroka.h"
+#include "IdentStr.h"
+#include "DecStr.h"
 using namespace std;
-
-//extern "C" char *__stdcall fun1(int);
+extern "C" char* __stdcall fun2(int);
 int main(int argc, char *argv[])
 {
-    /*
-     Stroka obj1("ITMO");
-     obj1.Show();
-     cout << obj1.GetStr() << endl;
-     Stroka obj2 = obj1;
-     obj2.Show();
-     Stroka obj3('z');
-     obj3.Show();
-     */
-    /*
-     IdentStr obj4('k');
-     obj4.Show();
-     IdentStr obj5('5');
-     obj5.Show();
-     IdentStr obj6 = obj4;
-     obj6.Show();
-     IdentStr obj7("ITMO");
-     obj7.Show();
-     IdentStr obj8("_ITMO");
-     obj8.Show();
-     IdentStr obj9("1Itmo");
-     obj9.Show();
-     IdentStr obj10(";itmo");
-     obj10.Show();
-     IdentStr obj11("int");
-     obj11.Show();*/
-     
-    //IdentStr obj("ITMO");
-    //obj = obj + obj;
-    //obj.Show();
-    
-    //char *pobj2 = "PBKS";
-    DecStr obj4("10");
-    DecStr obj3("90");
-    obj4 = obj4 + obj3;
-    cout<<"obj4";
-    obj4.Show();
-    //obj4 = "302" + obj4;
-    //obj4.Show();
-    
-    
-    //IdentStr obj1();
-    //obj1[2];
-    //obj1.Show();
-    //BitStroka obj4('1');
-    //BitStroka obj3("000010111100");
-    
-    //obj3.Show();
-    
-    //cout << "Zero char = " << obj1[2] << endl;
-    
-    //cout<< fun1(-2147483647)<<endl;
-    cout << endl;
+	/*
+	Stroka obj1 = "ITMO";
+	Stroka *pMas[12];
+	pMas[0] = new Stroka("2019");
+	pMas[1] = new Stroka('k');
+	pMas[2] = new Stroka(5);
+	pMas[3] = new Stroka(obj1);
+	pMas[4] = new IdentStr("ITMO");// contructor char*
+	pMas[5] = new IdentStr(*((IdentStr*)pMas[4]));// contrustor &
+	pMas[6] = new IdentStr('k');// char contructor
+	pMas[7] = new IdentStr(5);// int contructor
+	cout<<(*(IdentStr*)pMas[4])[3]<<endl;//index number
+	cout<<(*(IdentStr*)pMas[4])['I']<<endl;// first index number
+	pMas[8] = new DecStr("312");// consrustir with string num
+	pMas[9] = new DecStr(*(DecStr*)pMas[8]);// constructor copy obj
+	pMas[10] = new DecStr("-312");// with - 
+	pMas[11] = new DecStr("2019");// normal string number
+	*(DecStr*)pMas[11] = *(DecStr*)pMas[8] + *(DecStr*)pMas[9];// + 2 obj
+	//*(DecStr*)pMas[11] = *(DecStr*)pMas[8] + "123";// obj+ string
+
+	*(DecStr*)pMas[10] = *(DecStr*)pMas[8] + 123;// obj+ num
+	*(DecStr*)pMas[10] = 123 + *(DecStr*)pMas[8];//num+obj
+
+	*(DecStr*)pMas[10] = "-123" + *(DecStr*)pMas[8];// - num + obj
+	*(DecStr*)pMas[8] = *(DecStr*)pMas[8]*2;// obj*int
+	*(DecStr*)pMas[8] = 2*(*(DecStr*)pMas[8]);//int *obj
+	*(DecStr*)pMas[8] = *(DecStr*)pMas[8] *(*(DecStr*)pMas[8]);//obj*obj
+	for ( int i = 0; i< sizeof(pMas)/sizeof(pMas[0]); i++)
+	{
+		cout<<"value of pMas["<<i<<"]"<<endl;
+		pMas[i]->Show();
+	}
+	pMas[11]->Show();
+	if(*(DecStr*)pMas[11] == *(DecStr*)pMas[10]) cout<<"equal the same string"<<endl;
+	else cout<< "not equal"<<endl;
+	for ( int i = 0; i< sizeof(pMas)/sizeof(pMas[0]); i++)
+	{
+		delete pMas[i];
+	}
+	cout<< fun1(-2147483627)<<endl;
+	DecStr obj1;
+    DecStr obj3(fun1(-2147483647));
+	DecStr obj4(fun2(+83646));
+	//obj1 =  obj3+obj4;
+	obj1 =   255+ obj4;*/
+	IdentStr obj1("BIT");
+	IdentStr obj2("ITMO");
+	obj2 =  obj2 + "2019";
+	obj2 = "K2019" + obj1;
+	
+
+	cout << "index of '2' element of string: "<< obj2['I']<<endl<< "2rd element: " << obj2[2] << endl;
+	obj2.Show();
+	cout << endl;
     cout << "spaces in this filename\n" << endl;
+	system("pause");
     return 0;
 }
+

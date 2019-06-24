@@ -1,12 +1,8 @@
 //
-//  IdentStr.cpp
-//  VPD
-//
-//  Created by Manh Tran on 28/03/2019.
-//  Copyright © 2019 Manh Tran. All rights reserved.
+// Created by RACA HAMA on 2019-05-18.
 //
 
-#include "IdentStr.hpp"
+#include "IdentStr.h"
 IdentStr::IdentStr(int val) :Stroka(val)
 {
     cout << "IdentStr::IdentStr(int val):Stroka(val),val=" << val << endl;
@@ -44,18 +40,6 @@ IdentStr::IdentStr(const char* Str) :Stroka(Str)
         pCh[0] = '\0';
         return;
     }
-    for (int i = 1; i < len; i++)
-    {
-        if (!((pCh[i] >= 'a' && pCh[i] <= 'z') || (pCh[i] >= 'A' && pCh[i] <= 'Z') || (pCh[i] >= '0' && pCh[i] <= '9') || (pCh[i] == '_')))
-        {
-            cout << "Bad Stroka pCh[0]=" << pCh[0] << endl;
-            if (pCh) delete[] pCh;
-            len = 0;
-            pCh = new char[len + 1];
-            pCh[0] = '\0';
-            return;
-        }
-    }
     for (int i = 0; i < 67; i++)
     {
         if (!strcmp(pCh, systemw[i]))
@@ -76,6 +60,38 @@ IdentStr::IdentStr(const char* Str) :Stroka(Str)
 IdentStr::~IdentStr()
 {
     cout << "IdentStr::~IdentStr()" << endl;
+}
+int IdentStr::operator [] (const char simbol)
+{
+	for ( int i = 0 ; i< len; i ++)
+	{
+		if(pCh[i] == simbol){
+		cout<< "char& IdentStr::operator [] (char simbol)"<<endl;
+		return i;
+		}
+	}
+	cout<< "value not in string!!!"<<endl;
+	return -1;
+}
+int IdentStr::operator [] (const char* simbol)
+{
+	for ( int i = 0 ; i< len; i ++)
+	{
+		if(pCh[i] == simbol[0]){
+			for (int j = 1 ; j < strlen(simbol); j++)
+			{
+				if (pCh[i+j] != simbol[j]) 
+				{
+					cout<< "value not in string!!!"<<endl;
+					return -1;
+				}
+			}
+			cout<< "char& IdentStr::operator [] (char simbol)"<<endl;
+			return i;
+		}
+	}
+	cout<< "value not in string!!!"<<endl;
+	return -1;
 }
 
 IdentStr& IdentStr::operator=(const IdentStr& S)
@@ -111,6 +127,12 @@ IdentStr operator + (const IdentStr&obj1, const IdentStr&obj2)
 
 IdentStr operator + (const IdentStr &obj1, const char *obj2)
 {
+	if (!((obj2[0] >= 'a' && obj2[0] <= 'z') || (obj2[0] >= 'A' && obj2[0] <= 'Z')))
+	{
+		cout << "Bad Stroka pCh[0]=" << obj2[0] << endl;
+        IdentStr tmp;
+        return  tmp;
+	}
     IdentStr tmp(obj1.getLen() + (int)strlen(obj2));
     //strcpy(tmp.pCh, obj1.GetStr());
     int i = 0;
@@ -127,6 +149,12 @@ IdentStr operator + (const IdentStr &obj1, const char *obj2)
 };
 IdentStr operator + (const char *obj1, const IdentStr &obj2)
 {
+	if (!((obj1[0] >= 'a' && obj1[0] <= 'z') || (obj1[0] >= 'A' && obj1[0] <= 'Z')))
+	{
+		cout << "Bad Stroka pCh[0]=" << obj1[0] << endl;
+        IdentStr tmp;
+        return  tmp;
+	}
     IdentStr tmp((int)strlen(obj1) + obj2.getLen());
     //strcpy(tmp.pCh, obj1.GetStr());
     int i = 0;
@@ -157,12 +185,13 @@ IdentStr IdentStr::operator ~ ()
     return *this;
 }
 
-char& IdentStr::operator [] (int Index)
+char IdentStr::operator [] (int Index)
 {
     if (Index >= 0 && Index < len)
     {
         cout << "char& IdentStr::operator [] (int Index)" << endl;
         return pCh[Index];
     }
-    return pCh[0];
+	cout<<"Index not valid"<<endl;
+    return ' ';
 }
